@@ -2,7 +2,13 @@
 framework. Here's a breakdown of what each part does: */
 const express = require("express");
 const { body } = require("express-validator");
-const { registerUser } = require("../controllers/user.controller");
+const {
+  registerUser,
+
+  loginUser,
+  getUserProfile,
+} = require("../controllers/user.controller");
+const { isAuthenticated } = require("../middlewares/auth.middlewares");
 
 const router = express.Router();
 
@@ -19,5 +25,18 @@ router.post(
   ],
   registerUser
 );
+
+router.post(
+  "/login",
+  [
+    body("email").isEmail().withMessage("Invalid Email"),
+
+    body("password")
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters"),
+  ],
+  loginUser
+);
+router.post("/profile", isAuthenticated, getUserProfile);
 
 module.exports = router;

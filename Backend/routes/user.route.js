@@ -39,4 +39,5 @@ router.post(
 );
 router.get("/profile", isAuthenticated, getUserProfile);
 
+
 module.exports = router;

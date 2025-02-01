@@ -1,3 +1,6 @@
+/* This JavaScript code snippet is defining a function called `createUser` that is exported from a
+module. The function takes an object as an argument with properties `firstname`, `lastname`,
+`email`, and `password`. */
 const User = require("../models/user.model");
 
 module.exports.createUser = async = ({

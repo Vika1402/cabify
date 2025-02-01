@@ -1,3 +1,5 @@
+/* This JavaScript code snippet is setting up a route for user registration using the Express
+framework. Here's a breakdown of what each part does: */
 const express = require("express");
 const { body } = require("express-validator");
 const { registerUser } = require("../controllers/user.controller");

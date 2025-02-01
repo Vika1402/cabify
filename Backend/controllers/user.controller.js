@@ -62,4 +62,7 @@ module.exports.loginUser = async (req, res) => {
 
 module.exports.getUserProfile = async (req, res, next) => {
   //midleware for speficic user login
+  const user = req.user;
+
+  res.status(200).json({ user });
 };

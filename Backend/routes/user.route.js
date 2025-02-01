@@ -37,6 +37,6 @@ router.post(
   ],
   loginUser
 );
-router.post("/profile", isAuthenticated, getUserProfile);
+router.get("/profile", isAuthenticated, getUserProfile);
 
 module.exports = router;

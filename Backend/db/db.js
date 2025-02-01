@@ -1,21 +1,18 @@
 const mongoose = require("mongoose");
 const DB_NAME = require("./dbName.js");
 
-function connectDb() {
+const connectDb = async () => {
   try {
-    mongoose
-      .connect(`${process.env.MONGODB_URL}`)
-      .then((res) => {
-        console.log(`connect to db`);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(`mongodb connected`);
-    //console.log(dbConnect);
+    const connectionInnstance = await mongoose.connect(
+      `${process.env.MONGODB_URL}/${DB_NAME}`
+    );
+    console.log(
+      `\n MongoDB Connnected !! DB HOST: ${connectionInnstance.connection.host}`
+    );
   } catch (error) {
-    console.log(error.message);
+    console.log("Mongodb Connection Error", error);
+    process.exit(1);
   }
-}
+};
 
 module.exports = connectDb;

@@ -3,8 +3,7 @@ const app = require("./app.js");
 const connectDb = require("./db/db.js");
 
 const server = http.createServer(app);
-
+connectDb();
 server.listen(process.env.PORT, () => {
   console.log(`server running on port ${process.env.PORT}`);
-  connectDb();
 });

@@ -332,3 +332,199 @@ Example:
   "error": "Internal Server Error"
 }
 ```
+
+### Driver Login Endpoint 🔑
+
+#### Endpoint: `/driver/login`
+
+This endpoint is used to log in an existing driver.
+
+#### Method: POST 📬
+
+#### Request Body 📝
+
+The request body should be a JSON object containing the following fields:
+
+- `email` (string): The email address of the driver. Must be a valid email format.
+- `password` (string): The password for the driver. Must be at least 6 characters long.
+
+Example:
+```json
+{
+  "email": "driver@example.com",
+  "password": "password123"
+}
+```
+
+#### Response 📤
+
+##### Success (200 OK) ✅
+
+If the driver is successfully logged in, the response will be a JSON object containing the authentication token and the driver details.
+
+Example:
+```json
+{
+  "token": "jwt-auth-token",
+  "driver": {
+    "_id": "driver-id",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "driver@example.com",
+    "vehicle": {
+      "type": "car",
+      "licensePlate": "ABC123",
+      "color": "red",
+      "capacity": 4
+    },
+    "status": "active"
+  }
+}
+```
+
+##### Error (400 Bad Request) ❌
+
+If the request body is invalid, the response will be a JSON object containing the validation errors.
+
+Example:
+```json
+{
+  "errors": [
+    {
+      "msg": "Invalid Email",
+      "param": "email",
+      "location": "body"
+    },
+    {
+      "msg": "Password must be at least 6 characters",
+      "param": "password",
+      "location": "body"
+    }
+  ]
+}
+```
+
+##### Error (401 Unauthorized) 🚫
+
+If the email or password is incorrect, the response will be a JSON object containing an error message.
+
+Example:
+```json
+{
+  "message": "Invalid email or password"
+}
+```
+
+##### Error (500 Internal Server Error) ⚠️
+
+If there is an internal server error, the response will be a JSON object containing the error message.
+
+Example:
+```json
+{
+  "error": "Internal Server Error"
+}
+```
+
+### Driver Logout Endpoint 🚪
+
+#### Endpoint: `/driver/logout`
+
+This endpoint is used to log out an authenticated driver.
+
+#### Method: POST 📬
+
+#### Headers 📋
+
+- `Authorization` (string): The authentication token of the driver.
+
+#### Response 📤
+
+##### Success (200 OK) ✅
+
+If the driver is successfully logged out, the response will be a JSON object containing a success message.
+
+Example:
+```json
+{
+  "message": "Logged out"
+}
+```
+
+##### Error (500 Internal Server Error) ⚠️
+
+If there is an internal server error, the response will be a JSON object containing the error message.
+
+Example:
+```json
+{
+  "error": "Internal Server Error"
+}
+```
+
+### Driver Profile Endpoint 📄
+
+#### Endpoint: `/driver/profile`
+
+This endpoint is used to get the profile details of an authenticated driver.
+
+#### Method: GET 📬
+
+#### Headers 📋
+
+- `Authorization` (string): The authentication token of the driver.
+
+#### Response 📤
+
+##### Success (200 OK) ✅
+
+If the driver profile is successfully retrieved, the response will be a JSON object containing the driver details.
+
+Example:
+```json
+{
+  "driver": {
+    "_id": "driver-id",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "driver@example.com",
+    "vehicle": {
+      "type": "car",
+      "licensePlate": "ABC123",
+      "color": "red",
+      "capacity": 4
+    },
+    "status": "active"
+  }
+}
+```
+
+##### Error (401 Unauthorized) 🚫
+
+If the authentication token is missing or invalid, the response will be a JSON object containing an error message.
+
+Example:
+```json
+{
+  "message": "Unauthorized"
+}
+```
+
+##### Error (500 Internal Server Error) ⚠️
+
+If there is an internal server error, the response will be a JSON object containing the error message.
+
+Example:
+```json
+{
+  "error": "Internal Server Error"
+}
+```
+
+### Implementation 🛠️
+
+The `/driver/login`, `/driver/logout`, and `/driver/profile` endpoints are implemented in the `driver.controller.js` file. The routes are defined in the `driver.route.js` file.

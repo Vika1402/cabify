@@ -1,7 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const { body } = require("express-validator");
-const { registerDriver } = require("../controllers/driver.controller");
+const {
+  registerDriver,
+  loginDriver,
+  logoutDriver,
+  driverProfile,
+} = require("../controllers/driver.controller");
+const {
+  isAuthenticated,
+  isAuthenticatedDriver,
+} = require("../middlewares/auth.middlewares");
+const { logoutUser } = require("../controllers/user.controller");
 
 router.post(
   "/register",
@@ -24,5 +34,11 @@ router.post(
   ],
   registerDriver
 );
+
+router.post("/login", loginDriver);
+
+router.get("/profile", isAuthenticatedDriver, driverProfile);
+
+router.post("/logout", isAuthenticatedDriver, logoutDriver);
 
 module.exports = router;

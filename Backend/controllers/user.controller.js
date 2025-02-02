@@ -41,7 +41,7 @@ module.exports.registerUser = async (req, res, next) => {
     res.status(201).json({ token, user });
   } catch (error) {
     console.error("Error in registerUser:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -69,13 +69,16 @@ module.exports.loginUser = async (req, res) => {
 module.exports.getUserProfile = async (req, res, next) => {
   //midleware for speficic user login
   const user = req.user;
-
   res.status(200).json({ user });
 };
 
-module.exports.logoutUser = async (req, res, next) => {
-  res.clearCookie("token");
-  const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
-  await BlacklistToken.create({ token });
-  res.status(200).json({ message: "Logged out" });
+module.exports.logoutUser = async (req, res) => {
+  try {
+    res.clearCookie("token");
+    const token = req.cookies.token || req.headers.authorization?.split(" ")[1];
+    await BlacklistToken.create({ token: token });
+    return res.status(200).json({ message: "Logged out" });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
 };

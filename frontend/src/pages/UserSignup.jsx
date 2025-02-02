@@ -28,8 +28,9 @@ function UserSignup() {
     const response = await axiosInstance.post("/user/register", newUser);
 
     if (response.status === 201) {
-      const data = await response.data;
+      const data = response.data;
       setUser(data.user);
+      localStorage.setItem("token", data.token);
       navigate("/home");
     }
 

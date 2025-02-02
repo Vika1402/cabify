@@ -94,7 +94,7 @@ function DriverSignup() {
           to={"/driver-login"}
           className="px-6 py-3 mt-4 flex items-center justify-center  text-[12px] leading-tight rounded-sm w-full"
         >
-          Uber's Privacy Notice describes the information we collect, how it is
+          Uber&apos;s Privacy Notice describes the information we collect, how it is
           used and shared, and your choices regarding this information.
         </p>
       </div>

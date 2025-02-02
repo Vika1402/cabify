@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import UserContext, { UserDataContext } from "../context/UserContext";
+import axiosInstance from "../utility/axiosInstant";
 function UserSignup() {
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
@@ -8,24 +10,35 @@ function UserSignup() {
   const [lastname, setLastname] = useState("");
   const [userData, setUserData] = useState({});
 
-  console.log(email);
-  const submitHandler = (e) => {
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserDataContext);
+
+  // console.log(email);
+  const submitHandler = async (e) => {
     e.preventDefault();
     //console.log(email, password);
-    setUserData({
+    const newUser = {
       email: email,
       password: password,
       fullname: {
         firstname: firstname,
         lastname: lastname,
       },
-    });
+    };
+    const response = await axiosInstance.post("/user/register", newUser);
+
+    if (response.status === 201) {
+      const data = await response.data;
+      setUser(data.user);
+      navigate("/home");
+    }
 
     setEmail("");
     setPasword("");
     setFirstname("");
     setLastname("");
   };
+
   //console.log(userData);
 
   return (
@@ -78,7 +91,7 @@ function UserSignup() {
             type="submit"
             className="px-6 py-3 mt-4 bg-black text-white text-xl rounded-sm mb-2"
           >
-            Signup
+            Create account
           </button>
           <p className="text-center">
             Already have an account?{" "}
@@ -91,8 +104,8 @@ function UserSignup() {
 
       <div>
         <p className="px-6 py-3 mt-4 flex items-center justify-center  text-[12px] leading-tight rounded-sm w-full">
-          Uber's Privacy Notice describes the information we collect, how it is
-          used and shared, and your choices regarding this information.
+          Uber&apso;s Privacy Notice describes the information we collect, how
+          it is used and shared, and your choices regarding this information.
         </p>
       </div>
     </div>

@@ -6,19 +6,18 @@ import DriverLogin from "./pages/DriverLogin";
 import DriverSignup from "./pages/DriverSignup";
 import { useContext } from "react";
 import { UserDataContext } from "./context/UserContext";
+import Start from "./pages/Start";
 
 function App() {
-  const asns = useContext(UserDataContext);
-  console.log(asns);
-
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Start />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/driver-login" element={<DriverLogin />} />
         <Route path="/driver-signup" element={<DriverSignup />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </div>
   );

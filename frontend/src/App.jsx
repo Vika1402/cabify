@@ -4,8 +4,13 @@ import UserLogin from "./pages/UserLogin";
 import UserSignup from "./pages/UserSignup";
 import DriverLogin from "./pages/DriverLogin";
 import DriverSignup from "./pages/DriverSignup";
+import { useContext } from "react";
+import { UserDataContext } from "./context/UserContext";
 
 function App() {
+  const asns = useContext(UserDataContext);
+  console.log(asns);
+
   return (
     <div>
       <Routes>

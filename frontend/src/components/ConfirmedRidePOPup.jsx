@@ -1,7 +1,9 @@
 import { FaAmazonPay, FaLocationDot, FaUser } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 function ConfirmedRidePOPup(props) {
+  const navigate = useNavigate();
   return (
     <div>
       <div>
@@ -53,13 +55,15 @@ function ConfirmedRidePOPup(props) {
           </div>
         </div>
 
-        <button className="p-3 rounded-xl bg-green-500 w-full text-white  font-semibold mt-4">
+        <button
+          onClick={() => navigate("/driver-ridding")}
+          className="p-3 rounded-xl bg-green-500 w-full text-white  font-semibold mt-4"
+        >
           Confirm
         </button>
         <button
           onClick={() => {
             props.setConfirmedRidePopupPAnnel(false);
-
             props.setRidePopupPAnnel(false);
           }}
           className="p-3 rounded-xl bg-red-600 w-full text-white font-semibold mt-4"

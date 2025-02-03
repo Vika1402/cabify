@@ -10,7 +10,7 @@ import ConfirmedRidePOPup from "../components/ConfirmedRidePOPup";
 function DriverHome() {
   const [ridePopupPannel, setRidePopupPAnnel] = useState(true);
   const [confirmedRidePopupPannel, setConfirmedRidePopupPAnnel] =
-    useState(true);
+    useState(false);
 
   const confirmedRidePopupPannelRef = useRef(null);
   const ridePopupPannelRef = useRef(null);
@@ -66,7 +66,7 @@ function DriverHome() {
       </div>
       <div
         ref={ridePopupPannelRef}
-        className="fixed bottom-0 bg-white z-10 py-10 w-full px-3   pt-14"
+        className="fixed bottom-0 bg-white z-10 py-10 w-full px-3    pt-14"
       >
         <RidePOPup
           ridePopupPannel={ridePopupPannel}
@@ -76,7 +76,7 @@ function DriverHome() {
       </div>
       <div
         ref={confirmedRidePopupPannelRef}
-        className="fixed bottom-0 h-screen bg-white z-10 py-10 w-full px-3  pt-14"
+        className="fixed bottom-0 h-screen bg-white z-10 py-10 w-full px-3    pt-14"
       >
         <ConfirmedRidePOPup
           ConfirmedridePopupPannel={confirmedRidePopupPannel}

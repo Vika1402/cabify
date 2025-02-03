@@ -12,6 +12,7 @@ import UserLogout from "./pages/UserLogout";
 import DriverHome from "./pages/DriverHome";
 import DriverProtectWrapper from "./pages/DriverProtectWrapper";
 import DriverLogout from "./pages/DriverLogout";
+import Riding from "./pages/Riding";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Start />} />
         <Route path="/login" element={<UserLogin />} />
+        <Route path="/riding" element={<Riding />} />
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/driver-login" element={<DriverLogin />} />
         <Route path="/driver-signup" element={<DriverSignup />} />
@@ -46,11 +48,11 @@ function App() {
             </UserProtectedWrapper>
           }
         />
-         <Route
+        <Route
           path="/driver-logout"
           element={
             <DriverProtectWrapper>
-              <DriverLogout/>
+              <DriverLogout />
             </DriverProtectWrapper>
           }
         />

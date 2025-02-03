@@ -1,6 +1,8 @@
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
-function LocationSearchPannel() {
+function LocationSearchPannel(props) {
+  console.log(props);
+
   const locations = [
     "283, Shri Ram Nagar, near Shiv Mandir, Indore",
     "123, MG Road, near Central Mall, Indore",
@@ -12,13 +14,18 @@ function LocationSearchPannel() {
     "404, Khajrana, near Khajrana Temple, Indore",
   ];
   return (
-    <div className="overflow-y-auto h-screen ">
-      {locations.map((item, index) => {
+    <div>
+      {locations.map((item, idx) => {
         return (
           <>
             <div
-              key={index}
-              className="flex border-2 p-3 rounded-xl border-gray-100 active:border-black  items-center justify-start gap-4"
+              key={idx}
+              onClick={() => {
+                props.setVehicalPannel(true);
+                props.setPannel(false);
+              }}
+              className="flex border-2 p-3 rounded-xl border-gray-100
+              active:border-black items-center justify-start gap-4"
             >
               <h2 className="bg-gray-100  flex items-center justify-center rounded-full w-10 h-10">
                 <FaLocationDot className="text-lg" />

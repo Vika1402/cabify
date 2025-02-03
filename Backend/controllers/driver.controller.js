@@ -52,7 +52,7 @@ module.exports.loginDriver = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "Error in generate token" });
   }
- res.status(200).cookie("token", token).json({ token, driver });
+  res.status(200).cookie("token", token).json({ token, driver });
 };
 
 module.exports.driverProfile = async (req, res, next) => {

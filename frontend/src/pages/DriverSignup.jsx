@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { DriverDataContext } from "../context/DriverContext";
 import axiosInstance from "../utility/axiosInstant";
@@ -109,18 +109,19 @@ function DriverSignup() {
 
           <div className="flex gap-4">
             <div className="w-1/2">
-              <h3 className="text-xl  mt-4">Vehicle Type</h3>
-              <input
-                type="text"
+              <select
                 required
                 value={vehicleType}
                 onChange={(e) => setVehicleType(e.target.value)}
                 className="w-full border-2 rounded-sm px-4 py-2 text-lg mt-1"
                 placeholder="Vehicle Type"
-              />
+              >
+                <option value="car">car</option>
+                <option value="motorcycle">motorcycle</option>
+                <option value="auto">auto</option>
+              </select>
             </div>
             <div className="w-1/2">
-              <h3 className="text-xl mt-4">Vehicle Model</h3>
               <input
                 type="text"
                 value={vehicleModel}
@@ -133,7 +134,6 @@ function DriverSignup() {
 
           <div className="flex gap-4">
             <div className="w-1/2">
-              <h3 className="text-xl mt-4">License Plate</h3>
               <input
                 type="text"
                 required
@@ -144,7 +144,6 @@ function DriverSignup() {
               />
             </div>
             <div className="w-1/2">
-              <h3 className="text-xl mt-4">Vehicle Color</h3>
               <input
                 type="text"
                 required
@@ -156,7 +155,6 @@ function DriverSignup() {
             </div>
           </div>
           <div className="w-full">
-            <h3 className="text-xl mt-4">Vehicle Capacity</h3>
             <input
               type="number"
               required

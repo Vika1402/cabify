@@ -8,9 +8,8 @@ dotenv.config();
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({
-  origin: '*'
-}));
+const origin = "*";
+app.use(cors({ origin }));
 
 app.use("/user", userRoutes);
 app.use("/driver", driverRoute);

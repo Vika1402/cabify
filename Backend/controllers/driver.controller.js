@@ -1,5 +1,4 @@
 const { validationResult } = require("express-validator");
-
 const { createDriver } = require("../services/driver.service");
 const Driver = require("../models/driver.model");
 const BlacklistToken = require("../models/blackListToken.model");
@@ -37,7 +36,7 @@ module.exports.loginDriver = async (req, res, next) => {
   if (!email || !password) {
     return res.status(401).json({ error: error.array() });
   }
-  const driver = await Driver.findOne({ email });
+  const driver = await Driver.findOne({ email }).select("+password");
   if (!driver) {
     return res
       .status(401)
@@ -53,7 +52,7 @@ module.exports.loginDriver = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "Error in generate token" });
   }
-  res.status(200).cookie("token", token).json({ token, driver });
+ res.status(200).cookie("token", token).json({ token, driver });
 };
 
 module.exports.driverProfile = async (req, res, next) => {

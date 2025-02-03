@@ -9,6 +9,9 @@ import { UserDataContext } from "./context/UserContext";
 import Start from "./pages/Start";
 import UserProtectedWrapper from "./pages/UserProtectedWrapper";
 import UserLogout from "./pages/UserLogout";
+import DriverHome from "./pages/DriverHome";
+import DriverProtectWrapper from "./pages/DriverProtectWrapper";
+import DriverLogout from "./pages/DriverLogout";
 
 function App() {
   return (
@@ -19,6 +22,14 @@ function App() {
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/driver-login" element={<DriverLogin />} />
         <Route path="/driver-signup" element={<DriverSignup />} />
+        <Route
+          path="/driver-home"
+          element={
+            <DriverProtectWrapper>
+              <DriverHome />
+            </DriverProtectWrapper>
+          }
+        />
         <Route
           path="/home"
           element={
@@ -33,6 +44,14 @@ function App() {
             <UserProtectedWrapper>
               <UserLogout />
             </UserProtectedWrapper>
+          }
+        />
+         <Route
+          path="/driver-logout"
+          element={
+            <DriverProtectWrapper>
+              <DriverLogout/>
+            </DriverProtectWrapper>
           }
         />
       </Routes>

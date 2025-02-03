@@ -1,21 +1,35 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import { Link, useActionData, useNavigate } from "react-router-dom";
+import axiosInstance from "../utility/axiosInstant";
+import { DriverDataContext } from "../context/DriverContext";
 
 function DriverLogin() {
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
-  const [captainData, setCaptainData] = useState({});
-  console.log(email);
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log(email, password);
-    setCaptainData({
-      email: email,
-      password: password,
-    });
+  const navigate = useNavigate();
+  const { driver, setDriver } = useContext(DriverDataContext);
 
-    setEmail("");
-    setPasword("");
+  //console.log(email);
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    //console.log(email, password);
+    const driverData = {
+      email,
+      password,
+    };
+
+    const response = await axiosInstance.post("/driver/login", driverData);
+    if (response.status === 200) {
+      const data = response.data;
+      console.log(data);
+      setDriver(data.driver);
+      localStorage.setItem("token", data.token);
+      navigate("/driver-home");
+    }
+
+    setEmail(" ");
+    setPasword(" ");
   };
   return (
     <div className="p-7 h-screen flex flex-col justify-between bg-gray-100">
@@ -50,13 +64,13 @@ function DriverLogin() {
           >
             Login
           </button>
-          <p className="text-center">
-            Join us?{" "}
-            <Link to={"/driver-signup"} className="text-orange-500">
-              Register as a Captain
-            </Link>
-          </p>
         </form>
+        <p className="text-center">
+          Join us?{" "}
+          <Link to={"/driver-signup"} className="text-orange-500">
+            Register as a Captain
+          </Link>
+        </p>
       </div>
 
       <div>

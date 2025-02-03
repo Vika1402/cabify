@@ -55,21 +55,30 @@ function ConfirmedRidePOPup(props) {
           </div>
         </div>
 
-        <button
-          onClick={() => navigate("/driver-ridding")}
-          className="p-3 rounded-xl bg-green-500 w-full text-white  font-semibold mt-4"
-        >
-          Confirm
-        </button>
-        <button
-          onClick={() => {
-            props.setConfirmedRidePopupPAnnel(false);
-            props.setRidePopupPAnnel(false);
-          }}
-          className="p-3 rounded-xl bg-red-600 w-full text-white font-semibold mt-4"
-        >
-          Cancel
-        </button>
+        <div className="flex gap-4">
+          <form>
+            <input
+              type="text"
+              placeholder="Enter OTP"
+              className="bg-gray-100 px-8 py-2 text-lg font-mono  rounded-lg w-full mt-7 outline-0"
+            />
+            <button
+              onClick={() => navigate("/driver-ridding")}
+              className="p-3 rounded-xl bg-green-500 w-full text-white  font-semibold mt-4"
+            >
+              Confirm
+            </button>
+            <button
+              onClick={() => {
+                props.setConfirmedRidePopupPAnnel(false);
+                props.setRidePopupPAnnel(false);
+              }}
+              className="p-3 rounded-xl bg-red-600 w-full text-white font-semibold mt-4"
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

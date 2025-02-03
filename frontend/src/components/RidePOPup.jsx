@@ -53,21 +53,22 @@ function RidePOPup(props) {
             </div>
           </div>
         </div>
-
-        <button
-          onClick={() => props.setConfirmedRidePopupPAnnel(true)}
-          className="p-3 rounded-xl bg-green-500 w-full text-white  font-semibold mt-4"
-        >
-          Accept
-        </button>
-        <button
-          onClick={() => {
-            props.setRidePopupPAnnel(false);
-          }}
-          className="p-3 rounded-xl bg-gray-400 w-full text-white font-semibold mt-4"
-        >
-          Cancel
-        </button>
+        <div className="flex gap-4">
+          <button
+            onClick={() => props.setConfirmedRidePopupPAnnel(true)}
+            className="p-3 rounded-xl bg-green-500 w-full text-white  font-semibold mt-4"
+          >
+            Accept
+          </button>
+          <button
+            onClick={() => {
+              props.setRidePopupPAnnel(false);
+            }}
+            className="p-3 rounded-xl bg-gray-400 w-full text-white font-semibold mt-4"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

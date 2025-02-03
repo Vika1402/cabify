@@ -116,6 +116,7 @@ function DriverSignup() {
                 className="w-full border-2 rounded-sm px-4 py-2 text-lg mt-1"
                 placeholder="Vehicle Type"
               >
+                <option>select now</option>
                 <option value="car">car</option>
                 <option value="motorcycle">motorcycle</option>
                 <option value="auto">auto</option>

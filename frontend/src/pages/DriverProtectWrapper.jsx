@@ -6,31 +6,33 @@ import axiosInstance from "../utility/axiosInstant";
 const DriverProtectWrapper = ({ children }) => {
   const token = localStorage.getItem("token");
   const { driver, setDriver } = useContext(DriverDataContext);
-  const [isloading, setIsLoading] = useState(true);
+  const [isloading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     if (!token) {
       navigate("/driver-login");
     }
-  }, [token]);
+  }, [token, navigate]);
 
-  axiosInstance
-    .get("/driver/profile", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => {
-      if (response.status === 200) {
-        setDriver(response.data.driver);
-        setIsLoading(false);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      localStorage.removeItem("token");
-      navigate("/driver-login");
-    });
+  useEffect(() => {
+    axiosInstance
+      .get("/driver/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          setDriver(response.data.driver);
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        localStorage.removeItem("token");
+        navigate("/driver-login");
+      });
+  }, [navigate, setDriver, token]);
 
   if (isloading) {
     return <div>loading...</div>;

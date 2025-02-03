@@ -6,7 +6,7 @@ import axiosInstance from "../utility/axiosInstant";
 const UserProtectedWrapper = ({ children }) => {
   const token = localStorage.getItem("token");
   const { user, setUser } = useContext(UserDataContext);
-  const [isloading, setIsLoading] = React.useState(true);
+  const [isloading, setIsLoading] = React.useState(false);
   //console.log(token);
 
   const navigate = useNavigate();

@@ -61,7 +61,7 @@ function DriverHome() {
           alt="map image"
         />
       </div>
-      <div className="h-1/2 p-4">
+      <div className="h-1/2 p-4 ">
         <DriverDetails />
       </div>
       <div

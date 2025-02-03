@@ -12,6 +12,7 @@ import DriverProtectWrapper from "./pages/DriverProtectWrapper";
 import DriverLogout from "./pages/DriverLogout";
 import Riding from "./pages/Riding";
 import DriverRiding from "./pages/DriverRiding";
+import FinishRide from "./pages/FinishRide";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <Route path="/driver-login" element={<DriverLogin />} />
         <Route path="/driver-signup" element={<DriverSignup />} />
         <Route path="/driver-ridding" element={<DriverRiding />} />
+        <Route path="/finish-ride" element={<FinishRide />} />
+
         <Route
           path="/driver-home"
           element={

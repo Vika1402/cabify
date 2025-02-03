@@ -4,6 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import FinishRide from "./FinishRide";
 function DriverRiding() {
   const [finishRidePannel, setFinishRidePannel] = useState(false);
   const finishRidePannelRef = useRef(null);
@@ -49,7 +50,7 @@ function DriverRiding() {
         <div className="w-full flex justify-center mb-4">
           <IoIosArrowDown className="text-xl text-white" />
         </div>
-        <div className="flex items-center gap-4 ">
+        <div className="flex items-center justify-center gap-4 ">
           <h4 className="text-xl"> 4 km away</h4>
           <button className="py-3 px-10 rounded-xl bg-green-400 text-white tracking-wider  font-semibold">
             Complete Ride
@@ -59,7 +60,9 @@ function DriverRiding() {
       <div
         ref={finishRidePannelRef}
         className="fixed bottom-0 bg-white z-10 py-10 w-full px-3 translate-y-full pt-14"
-      ></div>
+      >
+        <FinishRide setFinishRidePannel={setFinishRidePannel} />
+      </div>
     </div>
   );
 }

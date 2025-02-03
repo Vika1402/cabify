@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { FaAmazonPay, FaLocationDot, FaUser } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 function ConfirmedRidePOPup(props) {
+  const [otp, setOtp] = useState("");
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
   const navigate = useNavigate();
   return (
     <div>
@@ -18,7 +23,7 @@ function ConfirmedRidePOPup(props) {
         <h3 className="text-2xl p-3 top-0 font-semibold">
           Confirm this ridde to start
         </h3>
-        <div className="flex items-center justify-between  bg-amber-300 px-2 py-2 rounded-xl">
+        <div className="flex items-center justify-between border-2 border-yellow-600 px-2 py-2 rounded-xl">
           <div className="flex items-center gap-4">
             <img
               className="w-15 h-15 object-cover object-center rounded-full"
@@ -55,28 +60,33 @@ function ConfirmedRidePOPup(props) {
           </div>
         </div>
 
-        <div className="flex gap-4">
-          <form>
+        <div className="flex gap-4 justify-center ">
+          <form onSubmit={(e) => submitHandler(e)} className="w-full">
             <input
               type="text"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
               placeholder="Enter OTP"
               className="bg-gray-100 px-8 py-2 text-lg font-mono  rounded-lg w-full mt-7 outline-0"
             />
-            <button
-              onClick={() => navigate("/driver-ridding")}
-              className="p-3 rounded-xl bg-green-500 w-full text-white  font-semibold mt-4"
-            >
-              Confirm
-            </button>
-            <button
-              onClick={() => {
-                props.setConfirmedRidePopupPAnnel(false);
-                props.setRidePopupPAnnel(false);
-              }}
-              className="p-3 rounded-xl bg-red-600 w-full text-white font-semibold mt-4"
-            >
-              Cancel
-            </button>
+
+            <div className="flex gap-4 mt-6">
+              <button
+                onClick={() => navigate("/driver-ridding")}
+                className="p-3 rounded-xl bg-green-500 w-full text-white  font-semibold mt-4"
+              >
+                Confirm
+              </button>
+              <button
+                onClick={() => {
+                  props.setConfirmedRidePopupPAnnel(false);
+                  props.setRidePopupPAnnel(false);
+                }}
+                className="p-3 rounded-xl bg-red-600 w-full text-white font-semibold mt-4"
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         </div>
       </div>
